@@ -177,6 +177,12 @@ open class SocketIOClient : NSObject, SocketIOClientSpec, SocketEngineClient, So
     open func connect() {
         connect(timeoutAfter: 0, withHandler: nil)
     }
+    
+    @objc
+    open func connectWithParams(timeoutAfter: Double, withHandler handler: (() -> ())?, params: [String: Any]) {
+        engine?.connectParams = params
+        connect(timeoutAfter: timeoutAfter, withHandler: handler)
+    }
 
     /// Connect to the server. If we aren't connected after `timeoutAfter` seconds, then `withHandler` is called.
     ///
